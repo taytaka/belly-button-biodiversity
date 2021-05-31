@@ -64,7 +64,7 @@ function buildCharts(sample) {
     // 1. Create a variable that filters the metadata array for the object with the desired sample number.
     var metadata = data.metadata;
     var resultMetadataArray = metadata.filter(sampleObj => sampleObj.id == sample);
-    //  5. Create a variable that holds the first sample in the array.
+    // 5. Create a variable that holds the first sample in the array.
     var result = resultArray[0];
     // 2. Create a variable that holds the first sample in the metadata array.
     var metadataResult = resultMetadataArray[0];
@@ -75,7 +75,7 @@ function buildCharts(sample) {
 
     // 3. Create a variable that holds the washing frequency.
     var wfreq = data.metadata.map(person => person.wfreq);
-    wfreq = Integer.parseInt(wfreq);
+    wfreq = parseInt(wfreq);
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
@@ -107,8 +107,7 @@ function buildCharts(sample) {
       text: otu_labels,
       mode: 'markers',
       marker: {
-        color: 'rgb(93, 164, 214)', sizeref: 2.0 * Math.max(...size) / (desired_maximum_marker_size**2),
-        sizemode: 'area', colorscale: 'rdBu'
+        color: otu_ids, size: sample_values, colorscale: 'rdBu'
       }
     }];
 
@@ -126,9 +125,19 @@ function buildCharts(sample) {
     var gaugeData = [{
       domain: metadataResult,
       value: wfreq,
-      title: { text: "Belly Button Washing Frequency" },
+      title: { text: "Belly Button Washing Frequency: Scrubs per Week" },
       type: "indicator",
-      mode: "gauge+number"
+      mode: "gauge+number",
+      gauge: {
+        bar: { color: "black" },
+        axis: { range: [null, 10] },
+        steps: [
+          { range: [0, 2], color: "red" },
+          { range: [2, 4], color: "orange" },
+          { range: [4, 6], color: "yellow" },
+          { range: [6, 8], color: "lime" },
+          { range: [8, 10], color: "green" },
+        ]}
     }];
     
     // 5. Create the layout for the gauge chart.
