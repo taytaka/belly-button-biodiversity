@@ -74,8 +74,7 @@ function buildCharts(sample) {
     var sample_values = result.sample_values;
 
     // 3. Create a variable that holds the washing frequency.
-    var wfreq = data.metadata.map(person => person.wfreq);
-    wfreq = parseInt(wfreq);
+    var wfreq = parseInt(metadataResult.wfreq);
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
@@ -93,8 +92,8 @@ function buildCharts(sample) {
 
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top Ten Bacteria Cultures Found",
-      margin: { t: 30, l: 150 }
+      title: "<b>Top Ten Bacteria Cultures Found</b>",
+      margin: { t: 30, l: 100 }
     };
 
     // 10. Use Plotly to plot the data with the layout. 
@@ -113,7 +112,7 @@ function buildCharts(sample) {
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "Bacteria Cultures per Sample",
+      title: "<b>Bacteria Cultures per Sample</b>",
       xaxis: { title: "OTU ID"},
       hovermode: "closest" 
     };
@@ -125,7 +124,7 @@ function buildCharts(sample) {
     var gaugeData = [{
       domain: metadataResult,
       value: wfreq,
-      title: { text: "Belly Button Washing Frequency: Scrubs per Week" },
+      title: { text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week</br>" },
       type: "indicator",
       mode: "gauge+number",
       gauge: {
@@ -142,7 +141,7 @@ function buildCharts(sample) {
     
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-      width: 600, height: 500, margin: { t: 0, b: 0 }
+      width: 450, height: 400, margin: { t: 0, b: 0 }
     };
 
     // 6. Use Plotly to plot the gauge data and layout.
